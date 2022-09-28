@@ -33,7 +33,7 @@ def teste():
 
     y_hat = np.matmul(x_test, beta)
     print(y_hat.shape)
-    np.save(fnteste, y_hat)
+    np.save(fnytest, y_hat)
 
 while True:
     a = input("b-calculate betas; t-generate testing data, e-exit: ")
