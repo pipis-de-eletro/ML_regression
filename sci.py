@@ -15,7 +15,7 @@ def main():
     y = np.load(fny)
     
     reg = linear_model.LinearRegression()
-
+    
     if x.shape[0] != y.shape[0]:
         print("Training set has different samples amounts for x and y.")
         exit(0)

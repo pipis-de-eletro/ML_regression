@@ -53,16 +53,21 @@ def main():
     print("Mean Squared Error = %2f" % mse(y_test, y_hat))
     print("Coefficient of determination = %2f" % r2(y_test, y_hat))
     
-    final_model = linear_model.Lasso(alpha=reg.alpha_)
-    final_model.fit(x, y)
+    '''
+    ===========================================================================================================
+    Retraining the model with all the data 
+    ===========================================================================================================
+    '''
+
+    #final_model = linear_model.Lasso(alpha=reg.alpha_)
+    final_model = linear_model.LassoCV(alphas=np.linspace(0.001, reg.alpha_, 10))
+    final_model.fit(x, y.ravel())
 
     print("MSE: %2f" % mse(y, final_model.predict(x)))
     print("Score: %2f" % final_model.score(x, y))
-
+    
     x_test = np.load(fnteste)
-    y_hat = final_model.predict(x_test)
-    
-    
+    y_hat = final_model.predict(x_test) 
     
     np.save(fnytest, y_hat)
 
